@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Espiga Dorada | Panadería Artesanal B2C</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{
+  --ink:#1b2620;
+  --ink-light:#2b3b32;
+  --gold:#c28b2c;
+  --gold-hover:#a3721f;
+  --gold-soft:#f7eedc;
+  --crust:#6e3f1d;
+  --paper:#faf8f3;
+  --soft:#f1ece1;
+  --line:#dfd8c8;
+  --text:#2c2b27;
+  --muted:#636159;
+  --shadow:0 8px 24px rgba(27,38,32,0.06);
+  --shadow-hover:0 14px 30px rgba(27,38,32,0.12);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Source Sans 3',Arial,sans-serif;color:var(--text);background:var(--paper);line-height:1.65}
+h1,h2,h3,h4{font-family:'Libre Baskerville',Georgia,serif;color:var(--ink);line-height:1.25}
+
+/* Navegación */
+header{background:var(--ink);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rgba(0,0,0,0.15)}
+.bar{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;flex-wrap:wrap;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Libre Baskerville',Georgia,serif;font-size:1.2rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.3px}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:none;border:0;color:#e5dec9;font:600 .96rem 'Source Sans 3',sans-serif;padding:8px 14px;cursor:pointer;border-radius:4px;transition:all .2s}
+nav button:hover{color:#fff;background:rgba(255,255,255,0.08)}
+nav button.on{color:#fff;background:var(--gold);box-shadow:0 2px 8px rgba(194,139,44,0.35)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+main{max-width:1120px;margin:auto;padding:32px 20px 70px}
+section{display:none;animation:fadeIn .35s ease}
+section.on{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* Botones y Badges */
+.badge{display:inline-block;background:var(--gold-soft);color:var(--crust);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:20px;border:1px solid #e6d3ad;margin-bottom:10px}
+.btn{background:var(--gold);color:#fff;border:0;padding:13px 24px;font:700 1rem 'Source Sans 3',Arial,sans-serif;border-radius:6px;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(194,139,44,0.25)}
+.btn:hover{background:var(--gold-hover);transform:translateY(-1px)}
+.btn.alt{background:var(--ink);box-shadow:0 4px 12px rgba(27,38,32,0.2)}
+.btn.alt:hover{background:var(--ink-light)}
+.btn.sm{padding:8px 14px;font-size:.88rem}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:16px 0 36px}
+.hero h1{font-size:2.55rem;margin:0 0 14px}
+.hero p{font-size:1.1rem;color:var(--muted);margin-bottom:22px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.photo-wrap{position:relative;border-radius:10px;overflow:hidden;box-shadow:var(--shadow-hover);border:1px solid var(--line)}
+.photo{width:100%;height:370px;object-fit:cover;display:block;transition:transform .5s ease}
+.photo-wrap:hover .photo{transform:scale(1.03)}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(20,28,24,0.85));color:#fff;padding:18px 16px 12px;font-size:.88rem}
+
+/* Tarjetas y Grillas */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:22px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.card h3{margin:0 0 8px;font-size:1.12rem;color:var(--ink)}
+.band{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:28px;margin:32px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+.band img{width:100%;height:230px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+
+/* Galería */
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin:30px 0}
+.gal .photo-wrap .photo{height:230px}
+
+/* Modelo B2C */
+.b2c-banner{background:linear-gradient(135deg,var(--ink),var(--ink-light));color:#fff;border-radius:10px;padding:28px;margin-bottom:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.b2c-banner h2{color:#fff;margin:0 0 6px;font-size:1.5rem}
+.b2c-banner p{margin:0;color:#dcd6c4;max-width:65ch}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:26px}
+.kpi{background:#fff;border-left:4px solid var(--gold);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:6px;padding:16px;box-shadow:var(--shadow)}
+.kpi strong{display:block;font-size:1.4rem;color:var(--ink);font-family:'Libre Baskerville',serif}
+.kpi span{font-size:.86rem;color:var(--muted)}
+.canvas-card{border-top:3px solid var(--gold)}
+.canvas-tag{font-size:.75rem;font-weight:700;color:var(--gold-hover);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:4px}
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+.step{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;position:relative}
+.step-num{background:var(--ink);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;margin-bottom:8px}
+
+/* Catálogo y Carrito */
+.prod{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.pimg-box{position:relative;height:185px;overflow:hidden;background:#e8e2d5}
+.pimg{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.prod:hover .pimg{transform:scale(1.06)}
+.prod-tag{position:absolute;top:10px;right:10px;background:rgba(27,38,32,0.85);color:#fff;font-size:.75rem;font-weight:600;padding:3px 9px;border-radius:4px}
+.prod-body{padding:18px;display:flex;flex-direction:column;flex:1}
+.price{font-weight:700;color:var(--crust);font-size:1.18rem;margin-top:auto;padding-top:10px}
+.qty{display:flex;align-items:center;justify-content:space-between;background:var(--soft);padding:6px 10px;border-radius:6px;margin-top:12px;border:1px solid var(--line)}
+.qty button{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:4px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:background .15s}
+.qty button:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.shop{display:grid;grid-template-columns:1.65fr 1fr;gap:26px;align-items:start}
+.cart{position:sticky;top:84px;border-top:4px solid var(--gold)}
+.cart table,.mx{width:100%;border-collapse:collapse;font-size:.92rem}
+.cart td,.mx td,.mx th{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.mx th{background:var(--ink);color:#fff;font-weight:600}
+.mx tr:nth-child(even){background:#faf8f4}
+.tw{overflow-x:auto}
+label{display:block;font-size:.88rem;margin-top:12px;font-weight:600;color:var(--ink)}
+input,select{width:100%;padding:10px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fff;margin-top:4px}
+.total{display:flex;justify-content:space-between;font-size:1.25rem;font-weight:700;margin:14px 0;padding-top:10px;border-top:2px solid var(--line);color:var(--ink)}
+.msg{padding:14px;border-radius:6px;margin-bottom:18px;display:none;font-weight:600}
+.msg.ok{background:#e4f1e6;border:1px solid #9cc7a3;color:#1b4d24;display:block}
+.msg.err{background:#f8e5e1;border:1px solid #d9a69c;color:#7a2216;display:block}
+.note{font-size:.86rem;color:var(--muted)}
+
+/* Legal Separado dentro de la misma pestaña */
+.legal-nav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 26px;padding:12px;background:var(--soft);border-radius:8px;border:1px solid var(--line)}
+.legal-nav a{text-decoration:none;background:#fff;color:var(--ink);font-weight:600;font-size:.9rem;padding:8px 14px;border-radius:6px;border:1px solid var(--line);transition:all .2s}
+.legal-nav a:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.legal-block{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px;margin-bottom:28px;box-shadow:var(--shadow);scroll-margin-top:90px}
+.legal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--soft);padding-bottom:12px;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.legal-head h2{margin:0;font-size:1.45rem}
+.legal-status{background:#e4f1e6;color:#1b4d24;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:4px;border:1px solid #b8dec0}
+.legal-block p,.legal-block li{max-width:82ch}
+.legal-block ol{padding-left:20px}
+.legal-block li{margin-bottom:10px}
+.risk-high{background:#fdecea;color:#991b1b;font-weight:700;padding:2px 8px;border-radius:4px;font-size:.82rem}
+.risk-med{background:#fef3c7;color:#92400e;font-weight:700;padding:2px 8px;border-radius:4px;font-size:.82rem}
+.risk-low{background:#e0f2fe;color:#075985;font-weight:700;padding:2px 8px;border-radius:4px;font-size:.82rem}
+
+
+/* Administración de empresa */
+.admin-wrap{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start}
+.admin-side{background:var(--ink);color:#fff;border-radius:9px;padding:18px;position:sticky;top:88px}
+.admin-side h3{color:#fff;margin:0 0 12px}
+.admin-side button{display:block;width:100%;text-align:left;background:transparent;color:#e8e1d0;border:0;padding:10px 11px;border-radius:5px;cursor:pointer;font:600 .95rem 'Source Sans 3',sans-serif}
+.admin-side button:hover,.admin-side button.active{background:var(--gold);color:#fff}
+.admin-content{min-width:0}
+.admin-view{display:none}
+.admin-view.active{display:block}
+.admin-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.admin-kpi{background:#fff;border:1px solid var(--line);border-radius:7px;padding:15px;box-shadow:var(--shadow)}
+.admin-kpi strong{display:block;font:700 1.45rem 'Libre Baskerville',serif;color:var(--ink)}
+.admin-kpi span{font-size:.84rem;color:var(--muted)}
+.admin-panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;margin:14px 0;box-shadow:var(--shadow)}
+.admin-panel h3{margin-top:0}
+.admin-table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:650px}
+.admin-table th,.admin-table td{padding:10px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.admin-table th{background:var(--ink);color:#fff}
+.status{display:inline-block;padding:3px 8px;border-radius:20px;font-size:.76rem;font-weight:700;background:#fef3c7;color:#854d0e}
+.status.paid,.status.done{background:#dcfce7;color:#166534}
+.status.cancel{background:#fee2e2;color:#991b1b}
+.admin-actions{display:flex;gap:7px;flex-wrap:wrap}
+.admin-actions button,.mini-btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:6px 9px;border-radius:5px;cursor:pointer;font:600 .82rem 'Source Sans 3',sans-serif}
+.admin-actions button:hover,.mini-btn:hover{border-color:var(--gold);background:var(--gold-soft)}
+.admin-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.admin-form label{margin-top:0}
+.admin-note{background:#fff7e6;border:1px solid #ead4a6;padding:12px;border-radius:6px;color:#694d1c;font-size:.88rem}
+.admin-login{max-width:430px;margin:30px auto}
+.admin-login input{max-width:100%}
+.admin-toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.admin-toolbar input{max-width:280px}
+.admin-empty{padding:24px;text-align:center;color:var(--muted)}
+.order-detail{background:var(--soft);padding:12px;border-radius:6px;margin-top:8px}
+@media(max-width:820px){.admin-wrap{grid-template-columns:1fr}.admin-side{position:static}.admin-side button{display:inline-block;width:auto}.admin-table{font-size:.82rem}}
+
+footer{background:var(--ink);color:#d8d3c2;padding:28px 20px;text-align:center;font-size:.9rem}
+footer button{background:none;border:0;color:#fff;text-decoration:underline;cursor:pointer;font:inherit;margin:0 10px}
+@media(max-width:820px){
+  .hero,.shop,.band{grid-template-columns:1fr}
+  .cart{position:static}
+  .hero h1{font-size:1.95rem}
+}
+</style>
+</head>
+<body>
+
+<header><div class="bar">
+  <a class="logo" href="#" onclick="go('inicio');return false">
+    <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+      <g fill="#d9a53a">
+        <ellipse cx="20" cy="9" rx="3" ry="5"/>
+        <ellipse cx="13" cy="15" rx="3" ry="5" transform="rotate(-35 13 15)"/>
+        <ellipse cx="27" cy="15" rx="3" ry="5" transform="rotate(35 27 15)"/>
+        <ellipse cx="13" cy="24" rx="3" ry="5" transform="rotate(-35 13 24)"/>
+        <ellipse cx="27" cy="24" rx="3" ry="5" transform="rotate(35 27 24)"/>
+      </g>
+      <path d="M20 14V37" stroke="#d9a53a" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    La Espiga Dorada
+  </a>
+  <nav>
+    <button data-s="inicio" class="on">Inicio</button>
+    <button data-s="modelo">Modelo B2C</button>
+    <button data-s="compras">Tienda en Línea</button>
+    <button data-s="legal">Marco Legal</button>
+    <button data-s="admin">Administración de empresa</button>
+  </nav>
+</div></header>
+
+<main>
+<!-- SECCIÓN 1: INICIO -->
+<section id="inicio" class="on">
+  <div class="hero">
+    <div>
+      <span class="badge">Horneado artesanal diario</span>
+      <h1>Panadería tradicional mexicana con entrega directa</h1>
+      <p>Elaboramos diariamente pan telera, pan de dulce recién horneado, galletas de mantequilla y pasteles por encargo. Realiza tu pedido en línea sin intermediarios y paga de forma segura.</p>
+      <div class="hero-actions">
+        <button class="btn" onclick="go('compras')">Hacer pedido ahora</button>
+        <button class="btn alt" onclick="go('modelo')">Conocer modelo B2C</button>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <img class="photo" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" alt="Pan artesanal recién horneado en canasta">
+      <div class="photo-caption">Producción diaria con masa madre e ingredientes locales seleccionados.</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Misión</h3>
+      <p>Ofrecer pan fresco, accesible y de calidad superior, elaborado con recetas tradicionales y atención directa a cada familia.</p>
+    </div>
+    <div class="card">
+      <h3>Visión</h3>
+      <p>Consolidarnos como la panadería digital de referencia en la región, destacando por nuestra puntualidad y frescura garantizada.</p>
+    </div>
+    <div class="card">
+      <h3>Valores</h3>
+      <p>Frescura diaria, honestidad en precios, estricta higiene alimentaria y protección total de los datos de nuestros clientes.</p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div>
+      <span class="badge">Desde 1998</span>
+      <h2 style="margin-top:0">Nuestra historia</h2>
+      <p>La Espiga Dorada nació en un horno familiar con una sola receta: la telera crujiente de todos los días. Con el paso de los años incorporamos conchas tradicionales, galletas de mantequilla y pastelería fina.</p>
+      <p style="margin-bottom:0">Hoy evolucionamos hacia un modelo digital directo al consumidor (B2C) para que disfrutes el pan recién salido del horno con solo un clic.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80" alt="Vitrina con variedad de pan dulce">
+  </div>
+
+  <div class="gal">
+    <div class="photo-wrap">
+      <img class="photo" src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=700&q=80" alt="Amasado artesanal en obrador">
+      <div class="photo-caption">Amasado y fermentación controlada</div>
+    </div>
+    <div class="photo-wrap">
+      <img class="photo" src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=700&q=80" alt="Pan rústico recién salido del horno">
+      <div class="photo-caption">Horneado continuo durante la mañana y tarde</div>
+    </div>
+    <div class="photo-wrap">
+      <img class="photo" src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80" alt="Repostería y pasteles para eventos">
+      <div class="photo-caption">Repostería fina y pedidos especiales</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><h3>Horario de atención</h3><p>Lunes a sábado: 7:00 a 20:00 h.<br>Domingos: 7:00 a 15:00 h.</p></div>
+    <div class="card"><h3>Atención a clientes</h3><p>contacto@laespigadorada.mx<br>Tel. y WhatsApp: (771) 000 0000</p></div>
+    <div class="card"><h3>Ubicación</h3><p>Centro Histórico, Huichapan, Hidalgo, México.</p></div>
+  </div>
+</section>
+
+<!-- SECCIÓN 2: MODELO B2C LISTO PARA USAR -->
+<section id="modelo">
+  <div class="b2c-banner">
+    <div>
+      <span class="badge" style="background:var(--gold);color:#fff;border:0">Estrategia Comercial Activa</span>
+      <h2>Modelo de Negocio B2C (Business-to-Consumer)</h2>
+      <p>Operación directa del obrador al consumidor final mediante comercio electrónico propio, eliminando márgenes de intermediarios y maximizando la frescura del producto.</p>
+    </div>
+    <button class="btn" onclick="go('compras')">Probar simulador de compra →</button>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><strong>100% Directo</strong><span>Canal propio sin comisiones de terceros</span></div>
+    <div class="kpi"><strong>$10.00 MXN</strong><span>Ticket mínimo accesible en línea</span></div>
+    <div class="kpi"><strong>PCI-DSS</strong><span>Procesamiento cifrado vía la pasarela de pago</span></div>
+    <div class="kpi"><strong>Omnicanal</strong><span>Recolección en tienda o envío local</span></div>
+  </div>
+
+  <h2 style="margin-bottom:14px">Lienzo de Operación B2C (Business Model Canvas)</h2>
+  <div class="grid">
+    <div class="card canvas-card">
+      <span class="canvas-tag">1. Segmento de Clientes</span>
+      <h3>Consumidor Final Local</h3>
+      <p>Familias, estudiantes y trabajadores de oficina que buscan pan fresco diario para consumo en el hogar, así como particulares que organizan eventos sociales.</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">2. Propuesta de Valor</span>
+      <h3>Frescura y Compra Sin Fricción</h3>
+      <p>Pan recién horneado con precios transparentes, catálogo visual en tiempo real, apartado garantizado y pago digital seguro con tarjeta.</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">3. Canales de Venta y Entrega</span>
+      <h3>Ecosistema Digital Propio</h3>
+      <p>Tienda web responsiva, confirmación automatizada por correo, atención directa por WhatsApp y entrega dual (Click &amp; Collect en mostrador o reparto local).</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">4. Relación con el Cliente</span>
+      <h3>Fidelización Directa</h3>
+      <p>Atención personalizada postventa, recordatorios de pedidos especiales y envío de promociones de temporada con consentimiento previo.</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">5. Fuentes de Ingresos</span>
+      <h3>Venta Transaccional y Encargos</h3>
+      <p>Venta unitaria de pan blanco y dulce (alta rotación), paquetes gourmet de regalo y pastelería personalizada de alto margen (bodas, XV años, eventos).</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">6. Recursos Clave</span>
+      <h3>Infraestructura Física y Digital</h3>
+      <p>Hornos de piso, recetas estandarizadas, maestros panaderos, plataforma web e integración API con pasarela de pagos.</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">7. Actividades Clave</span>
+      <h3>Producción y Logística</h3>
+      <p>Horneado programado por lotes, gestión de inventario web, conciliación de pagos electrónicos y empaquetado higiénico.</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">8. Socios y Aliados</span>
+      <h3>Cadena de Suministro</h3>
+      <p>Molinos de harina y productores lácteos regionales, Proveedor de pagos SPEI (integración por configurar) y servicio de mensajería local.</p>
+    </div>
+    <div class="card canvas-card">
+      <span class="canvas-tag">9. Estructura de Costos</span>
+      <h3>Costos Fijos y Variables</h3>
+      <p>Materias primas, gas y energía eléctrica, nómina de producción, empaques biodegradables y comisión por transacción bancaria.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:26px;background:var(--soft)">
+    <h3 style="margin-top:0">Embudo de Conversión B2C (Flujo Operativo)</h3>
+    <div class="funnel">
+      <div class="step"><div class="step-num">1</div><h4>Selección</h4><p class="note">El cliente explora el catálogo con precios en MXN y arma su carrito.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Registro y Aceptación</h4><p class="note">Ingresa datos de entrega y acepta explícitamente el marco legal.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Pago Seguro</h4><p class="note">Generación del pedido y datos de transferencia SPEI de demostración.</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Entrega</h4><p class="note">Confirmación inmediata y entrega en tienda o domicilio.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 3: TIENDA EN LÍNEA -->
+<section id="compras">
+  <span class="badge">Catálogo disponible hoy</span>
+  <h1 style="margin-top:0">Tienda en línea</h1>
+  <div id="msg" class="msg" role="status"></div>
+  <div class="shop">
+    <div><div class="grid" id="catalogo"></div></div>
+    <aside class="card cart">
+      <h3>Resumen de tu pedido</h3>
+      <div id="lineas"><p class="note">Aún no agregas productos a tu canasta.</p></div>
+      <div class="total"><span>Total a pagar</span><span id="total">$0.00</span></div>
+      
+      <label for="nom">Nombre completo *</label>
+      <input id="nom" placeholder="Ej. Ana María López" autocomplete="name">
+      
+      <label for="cor">Correo electrónico *</label>
+      <input id="cor" type="email" placeholder="correo@ejemplo.com" autocomplete="email">
+      
+      <label for="tel">Teléfono / WhatsApp (10 dígitos) *</label>
+      <input id="tel" type="tel" placeholder="771 000 0000" autocomplete="tel">
+      
+      <label for="ent">Modalidad de entrega</label>
+      <select id="ent">
+        <option value="tienda">Recoger en tienda (Sin costo)</option>
+        <option value="domicilio">Entrega a domicilio local</option>
+      </select>
+      
+      <label style="display:flex;gap:8px;font-weight:400;align-items:flex-start;margin-top:14px">
+        <input id="ac" type="checkbox" style="width:auto;margin-top:5px">
+        <span class="note">He leído y acepto el <a href="#" onclick="irLegal('sec-privacidad');return false">Aviso de Privacidad</a> y los <a href="#" onclick="irLegal('sec-terminos');return false">Términos y Condiciones</a>.</span>
+      </label>
+      
+      <p style="margin-top:16px"><button class="btn" id="pagar" style="width:100%">Generar pedido y transferencia</button></p>
+      <p class="note" style="text-align:center">🔒 Demostración académica de pedido y transferencia SPEI. No se realiza un cobro bancario real.</p>
+    </aside>
+  </div>
+</section>
+
+
+<!-- SECCIÓN ADMINISTRACIÓN DE EMPRESA -->
+<section id="admin">
+  <span class="badge">Panel interno • La Espiga Dorada</span>
+  <h1 style="margin-top:0">Administración de empresa</h1>
+  <p class="note">Espacio de control para revisar pedidos, pagos, información de clientes e inventario.</p>
+
+  <div id="adminLogin" class="card admin-login">
+    <h3>Acceso de administración</h3>
+    <p class="note">Para esta demostración académica, ingresa la clave de administrador.</p>
+    <label for="adminPin">Clave de acceso</label>
+    <input id="adminPin" type="password" placeholder="Ingresa la clave">
+    <p><button class="btn" id="adminLoginBtn">Ingresar al panel</button></p>
+    <p class="note">Clave de demostración: <strong>ADMIN2026</strong>. Este acceso es demostrativo y no sustituye una autenticación segura en servidor.</p>
+    <div id="adminLoginMsg" class="msg"></div>
+  </div>
+
+  <div id="adminApp" hidden>
+    <div class="admin-toolbar">
+      <div><strong>Panel de control</strong><p class="note" style="margin:2px 0">Información guardada en este navegador.</p></div>
+      <button class="btn alt sm" id="adminLogout">Cerrar sesión</button>
+    </div>
+    <div class="admin-wrap">
+      <aside class="admin-side">
+        <h3>Menú administrativo</h3>
+        <button class="active" data-admin-view="resumen">Resumen general</button>
+        <button data-admin-view="pedidos">Pedidos y ventas</button>
+        <button data-admin-view="pagos">Pagos y transferencias</button>
+        <button data-admin-view="clientes">Datos de clientes</button>
+        <button data-admin-view="inventario">Inventario</button>
+      </aside>
+      <div class="admin-content">
+        <div id="adminResumen" class="admin-view active">
+          <h2>Resumen general</h2>
+          <div class="admin-kpis">
+            <div class="admin-kpi"><strong id="kpiOrders">0</strong><span>Pedidos registrados</span></div>
+            <div class="admin-kpi"><strong id="kpiPaid">$0.00</strong><span>Ventas pagadas (MXN)</span></div>
+            <div class="admin-kpi"><strong id="kpiPending">0</strong><span>Pagos pendientes</span></div>
+            <div class="admin-kpi"><strong id="kpiProducts">0</strong><span>Productos en catálogo</span></div>
+          </div>
+          <div class="admin-panel">
+            <h3>Actividad reciente</h3>
+            <div id="recentOrders" class="tw"></div>
+          </div>
+          <div class="admin-note">Los pedidos y movimientos se comparten entre la tienda y este panel en el mismo navegador. Para que varios dispositivos vean los mismos datos se necesita conectar una base de datos y un backend.</div>
+        </div>
+
+        <div id="adminPedidos" class="admin-view">
+          <h2>Pedidos y ventas</h2>
+          <div class="admin-panel">
+            <div class="admin-toolbar"><p class="note">Consulta el detalle y actualiza el avance de cada pedido.</p><input id="orderSearch" placeholder="Buscar por pedido o cliente"></div>
+            <div id="ordersTable" class="tw"></div>
+          </div>
+        </div>
+
+        <div id="adminPagos" class="admin-view">
+          <h2>Pagos y transferencias</h2>
+          <div class="admin-note">Modo académico: el botón de confirmación simula la acreditación SPEI. No mueve dinero ni consulta una cuenta bancaria real. En producción, esta confirmación debe llegar desde la pasarela mediante un Webhook verificado.</div>
+          <div class="admin-panel"><div id="paymentsTable" class="tw"></div></div>
+        </div>
+
+        <div id="adminClientes" class="admin-view">
+          <h2>Datos de clientes</h2>
+          <div class="admin-panel"><div id="customersTable" class="tw"></div></div>
+        </div>
+
+        <div id="adminInventario" class="admin-view">
+          <h2>Control de inventario</h2>
+          <div class="admin-panel">
+            <p class="note">El inventario se descuenta una sola vez cuando el pago se confirma. Puedes ajustar las existencias para la demostración.</p>
+            <div id="inventoryTable" class="tw"></div>
+          </div>
+          <div class="admin-panel">
+            <h3>Registrar entrada o ajuste de inventario</h3>
+            <div class="admin-form">
+              <label>Producto<select id="stockProduct"></select></label>
+              <label>Movimiento<select id="stockMovement"><option value="add">Entrada (+)</option><option value="set">Establecer existencia (=)</option></select></label>
+              <label>Cantidad<input id="stockAmount" type="number" min="0" step="1" value="1"></label>
+            </div>
+            <p><button class="btn sm" id="stockSave">Guardar movimiento</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 5: LEGAL (SEPARADO POR DOCUMENTO DENTRO DE LA MISMA PESTAÑA) -->
+<section id="legal">
+  <span class="badge">Cumplimiento Normativo y Seguridad</span>
+  <h1 style="margin-top:0">Marco Legal y Protección de Datos</h1>
+  <p class="note">Selecciona el documento que deseas consultar. Todos los apartados rigen las operaciones comerciales digitales de La Espiga Dorada.</p>
+
+  <!-- Índice rápido interno -->
+  <div class="legal-nav" aria-label="Navegación de documentos legales">
+    <a href="#sec-privacidad">1. Aviso de Privacidad (LFPDPPP)</a>
+    <a href="#sec-terminos">2. Términos y Condiciones B2C</a>
+    <a href="#sec-iso">3. Matriz de Seguridad ISO/IEC 27001</a>
+  </div>
+
+  <!-- BLOQUE 1: AVISO DE PRIVACIDAD -->
+  <article id="sec-privacidad" class="legal-block">
+    <div class="legal-head">
+      <h2>1. Aviso de Privacidad Integral</h2>
+      <span class="legal-status">Vigente • LFPDPPP México</span>
+    </div>
+    <p><strong>Identidad y domicilio del responsable:</strong> La Espiga Dorada, con domicilio comercial en Huichapan, Hidalgo, México, es responsable del uso y protección de sus datos personales. Correo de contacto: <strong>contacto@laespigadorada.mx</strong>.</p>
+    <p><strong>Datos personales que recabamos:</strong> Para cumplir con las finalidades descritas, recabamos exclusivamente datos de identificación y contacto: nombre completo, correo electrónico, número telefónico y domicilio de entrega. <em>Nota financiera:</em> No recabamos ni almacenamos datos de tarjetas bancarias; estos son procesados directamente por la pasarela de pago bajo sus controles de seguridad.</p>
+    <p><strong>Finalidades del tratamiento:</strong></p>
+    <ul>
+      <li><strong>Finalidades primarias (necesarias):</strong> Procesar, preparar y entregar sus pedidos de panadería; emitir comprobantes de compra; enviar notificaciones sobre el estatus del pedido y atender aclaraciones.</li>
+      <li><strong>Finalidades secundarias (opcionales):</strong> Envío de promociones de temporada y encuestas de satisfacción (puede oponerse en cualquier momento).</li>
+    </ul>
+    <p><strong>Ejercicio de Derechos ARCO:</strong> Usted tiene derecho a conocer qué datos personales tenemos de usted (Acceso), solicitar su corrección (Rectificación), pedir que los eliminemos de nuestros registros (Cancelación) u oponerse a su uso (Oposición). Para ejercerlos, envíe su solicitud a <strong>contacto@laespigadorada.mx</strong>; daremos respuesta en un plazo máximo de 20 días hábiles conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.</p>
+    <p><strong>Transferencia de datos:</strong> Sus datos personales únicamente se transfieren a Proveedor de pagos (cuando se integre) y al servicio de mensajería local cuando seleccione entrega a domicilio. Cualquier modificación a este aviso será publicada en esta misma sección.</p>
+  </article>
+
+  <!-- BLOQUE 2: TÉRMINOS Y CONDICIONES -->
+  <article id="sec-terminos" class="legal-block">
+    <div class="legal-head">
+      <h2>2. Términos y Condiciones de Venta en Línea (B2C)</h2>
+      <span class="legal-status">Comercio Electrónico • NOM-151 / PROFECO</span>
+    </div>
+    <p>Al realizar un pedido a través de la tienda en línea de La Espiga Dorada, el consumidor acepta las siguientes condiciones contractuales:</p>
+    <ol>
+      <li><strong>Precios y moneda:</strong> Todos los precios publicados están expresados en Pesos Mexicanos (MXN) e incluyen los impuestos aplicables. El monto total a pagar se muestra antes de confirmar la transacción.</li>
+      <li><strong>Perfeccionamiento de la compra:</strong> El pedido se considera confirmado únicamente cuando la pasarela de pagos valida y aprueba el cargo, generando el recibo electrónico correspondiente.</li>
+      <li><strong>Modalidades y tiempos de entrega:</strong> El cliente podrá elegir entre recolección en sucursal dentro del horario operativo o entrega a domicilio en la zona de cobertura. Los horarios de entrega están sujetos a los ciclos de horneado diario.</li>
+      <li><strong>Pedidos especiales y repostería:</strong> Los pasteles personalizados, mesas de pan y pedidos mayores a 50 piezas requieren un mínimo de 48 a 72 horas de anticipación.</li>
+      <li><strong>Política de cancelaciones y devoluciones:</strong> Debido a la naturaleza perecedera de los alimentos artesanalmente horneados, no se aceptan devoluciones por cambio de opinión una vez iniciada la producción. Procederá el reembolso total o reposición sin costo únicamente si el producto presenta defectos de calidad, daños en el traslado o error en el surtido, reportándolo el mismo día de la entrega con evidencia fotográfica.</li>
+      <li><strong>Obligaciones del usuario:</strong> El comprador se compromete a proporcionar información veraz de contacto y entrega, así como a utilizar el sitio de forma lícita.</li>
+      <li><strong>Jurisdicción y ley aplicable:</strong> Para la interpretación y cumplimiento de estos términos, las partes se someten a las leyes federales vigentes en los Estados Unidos Mexicanos y a la competencia de la Procuraduría Federal del Consumidor (PROFECO).</li>
+    </ol>
+  </article>
+
+  <!-- BLOQUE 3: MATRIZ ISO 27001 -->
+  <article id="sec-iso" class="legal-block">
+    <div class="legal-head">
+      <h2>3. Matriz de Seguridad de la Información (ISO/IEC 27001)</h2>
+      <span class="legal-status">Controles Anexo A</span>
+    </div>
+    <p>Estándares técnicos y administrativos aplicados para salvaguardar la confidencialidad, integridad y disponibilidad de la tienda en línea:</p>
+    <div class="tw">
+      <table class="mx">
+        <thead>
+          <tr>
+            <th>Activo de Información</th>
+            <th>Riesgo Identificado</th>
+            <th>Control Aplicado (Anexo A)</th>
+            <th>Responsable</th>
+            <th>Nivel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Base de datos de clientes</td>
+            <td>Acceso no autorizado o filtración</td>
+            <td>A.5.15 Control de acceso; A.8.24 Uso de criptografía</td>
+            <td>Administrador</td>
+            <td><span class="risk-high">Alto</span></td>
+          </tr>
+          <tr>
+            <td>Datos financieros / tarjetas</td>
+            <td>Intercepción o robo de credenciales</td>
+            <td>A.5.14 Transferencia segura; delegación a la pasarela de pago (PCI DSS)</td>
+            <td>Administrador</td>
+            <td><span class="risk-high">Alto</span></td>
+          </tr>
+          <tr>
+            <td>Sitio web e-commerce</td>
+            <td>Suplantación o caída de servicio</td>
+            <td>A.8.20 Seguridad de redes (HTTPS/TLS); A.8.8 Vulnerabilidades</td>
+            <td>Responsable de TI</td>
+            <td><span class="risk-high">Alto</span></td>
+          </tr>
+          <tr>
+            <td>Llaves API de la pasarela de pago</td>
+            <td>Exposición de llaves secretas</td>
+            <td>A.8.2 Derechos de acceso privilegiado; variables de entorno</td>
+            <td>Responsable de TI</td>
+            <td><span class="risk-high">Alto</span></td>
+          </tr>
+          <tr>
+            <td>Historial de pedidos</td>
+            <td>Pérdida o alteración de registros</td>
+            <td>A.8.13 Copias de seguridad; A.8.15 Registro de eventos</td>
+            <td>Encargado de ventas</td>
+            <td><span class="risk-med">Medio</span></td>
+          </tr>
+          <tr>
+            <td>Correo corporativo</td>
+            <td>Phishing o secuestro de cuenta</td>
+            <td>A.6.3 Concientización; autenticación multifactor (MFA)</td>
+            <td>Todo el personal</td>
+            <td><span class="risk-med">Medio</span></td>
+          </tr>
+          <tr>
+            <td>Equipos punto de venta</td>
+            <td>Malware o extravío de dispositivo</td>
+            <td>A.8.7 Protección contra malware; A.7.9 Seguridad de activos</td>
+            <td>Responsable de TI</td>
+            <td><span class="risk-med">Medio</span></td>
+          </tr>
+          <tr>
+            <td>Proveedores externos</td>
+            <td>Incumplimiento de confidencialidad</td>
+            <td>A.5.19 Seguridad en las relaciones con proveedores</td>
+            <td>Administrador</td>
+            <td><span class="risk-low">Bajo</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
+</main>
+
+<footer>
+  <p><strong>La Espiga Dorada</strong> • Panadería Tradicional con Comercio Electrónico B2C</p>
+  <p>
+    <button onclick="irLegal('sec-privacidad')">Aviso de Privacidad</button>
+    <button onclick="irLegal('sec-terminos')">Términos y Condiciones</button>
+    <button onclick="irLegal('sec-iso')">Matriz ISO 27001</button>
+  </p>
+</footer>
+
+<script>
+/* CONFIGURACIÓN: URL del endpoint backend que crea la sesión de la pasarela de pago */
+var CHECKOUT_URL = ""; // En producción: endpoint seguro del backend para crear el pago SPEI.
+
+/* CATÁLOGO CON IMÁGENES REALES DE ALTA RESOLUCIÓN */
+var P = [
+  {
+    id:"telera",
+    n:"Pan telera tradicional",
+    p:3,
+    tag:"Recién horneado",
+    img:"https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80",
+    d:"Pieza de pan blanco de corteza dorada y miga suave, ideal para tortas."
+  },
+  {
+    id:"dulce",
+    n:"Pan de dulce surtido",
+    p:12,
+    tag:"Favorito",
+    img:"https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=600&q=80",
+    d:"Concha de vainilla o chocolate, cuernito de mantequilla y roles del día."
+  },
+  {
+    id:"galletas",
+    n:"Galletas de mantequilla",
+    p:8,
+    tag:"Artesanal",
+    img:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80",
+    d:"Galleta crujiente elaborada con mantequilla pura y chispas de chocolate."
+  },
+  {
+    id:"rosca",
+    n:"Rosca tradicional",
+    p:380,
+    tag:"Familiar",
+    img:"https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80",
+    d:"Pan dulce trenzado aromatizado con azahar y frutas cristalizadas."
+  },
+  {
+    id:"tresleches",
+    n:"Pastel tres leches",
+    p:450,
+    tag:"Encargo 48h",
+    img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+    d:"Bizcocho esponjoso bañado en tres leches para 12 personas."
+  },
+  {
+    id:"caja",
+    n:"Caja gourmet de regalo",
+    p:650,
+    tag:"Edición especial",
+    img:"https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&w=600&q=80",
+    d:"Selección de pan artesanal, galletas finas y mermelada casera."
+  },
+  {
+    id:"boda",
+    n:"Pastel de tres pisos",
+    p:2800,
+    tag:"Encargo 72h",
+    img:"https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=600&q=80",
+    d:"Diseño personalizado para bodas y XV años. Incluye base."
+  },
+  {
+    id:"mesa",
+    n:"Mesa de pan para eventos",
+    p:3500,
+    tag:"Eventos",
+    img:"https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80",
+    d:"Surtido de mini piezas dulces y saladas para 50 personas con montaje."
+  }
+];
+
+var cart = {};
+var $ = function(i){ return document.getElementById(i); };
+var money = function(v){ return "$" + v.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+
+function go(s){
+  document.querySelectorAll("section").forEach(function(x){ x.classList.toggle("on", x.id === s); });
+  document.querySelectorAll("nav button").forEach(function(b){ b.classList.toggle("on", b.dataset.s === s); });
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function irLegal(ancla){
+  go('legal');
+  setTimeout(function(){
+    var el = document.getElementById(ancla);
+    if(el) el.scrollIntoView({behavior:"smooth"});
+  }, 60);
+}
+
+document.querySelectorAll("nav button").forEach(function(b){
+  b.onclick = function(){ go(b.dataset.s); };
+});
+
+function catalogo(){
+  $("catalogo").innerHTML = P.map(function(x){
+    return '<div class="card prod">' +
+      '<div class="pimg-box">' +
+        '<img class="pimg" src="' + x.img + '" alt="' + x.n + '" loading="lazy">' +
+        '<span class="prod-tag">' + x.tag + '</span>' +
+      '</div>' +
+      '<div class="prod-body">' +
+        '<h3>' + x.n + '</h3>' +
+        '<p class="note" style="margin:0">' + x.d + '</p>' +
+        '<div class="price">' + money(x.p) + ' MXN</div>' +
+        '<div class="qty">' +
+          '<button aria-label="Quitar uno de ' + x.n + '" onclick="cambia(\'' + x.id + '\',-1)">−</button>' +
+          '<strong id="q-' + x.id + '">0</strong>' +
+          '<button aria-label="Agregar uno de ' + x.n + '" onclick="cambia(\'' + x.id + '\',1)">+</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+}
+
+function cambia(id, d){
+  cart[id] = Math.max(0, (cart[id] || 0) + d);
+  if(!cart[id]) delete cart[id];
+  pinta();
+}
+
+function total(){
+  return P.reduce(function(t, x){ return t + (cart[x.id] || 0) * x.p; }, 0);
+}
+
+function pinta(){
+  P.forEach(function(x){
+    var el = $("q-" + x.id);
+    if(el) el.textContent = cart[x.id] || 0;
+  });
+  var l = P.filter(function(x){ return cart[x.id]; });
+  $("lineas").innerHTML = l.length
+    ? '<table>' + l.map(function(x){
+        return '<tr><td><strong>' + cart[x.id] + 'x</strong> ' + x.n + '</td><td style="text-align:right;font-weight:600">' + money(cart[x.id] * x.p) + '</td></tr>';
+      }).join("") + '</table>'
+    : '<p class="note">Aún no agregas productos a tu canasta.</p>';
+  $("total").textContent = money(total());
+}
+
+function aviso(t, tipo){
+  var m = $("msg");
+  m.textContent = t;
+  m.className = "msg " + tipo;
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+
+/* Persistencia local para la demostración académica. No sustituye un backend real. */
+var STORAGE_KEY = "espiga_dorada_demo_v1";
+var inventory = {};
+P.forEach(function(p){ inventory[p.id] = 30; });
+
+function loadStore(){
+  try{
+    var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    if(saved.inventory) inventory = saved.inventory;
+    if(!saved.orders) saved.orders = [];
+    return saved;
+  }catch(e){ return {orders:[], inventory:inventory}; }
+}
+var store = loadStore();
+inventory = store.inventory || inventory;
+function saveStore(){
+  store.inventory = inventory;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+}
+function orders(){ return store.orders || []; }
+function findProduct(id){ return P.find(function(p){return p.id===id;}); }
+function orderNumber(){ return "ED-" + Date.now().toString().slice(-8); }
+
+function setOrderPaid(order){
+  if(order.paymentStatus === "Pagado") return;
+  order.paymentStatus = "Pagado";
+  order.paidAt = new Date().toLocaleString("es-MX");
+  order.status = "Confirmado";
+  if(!order.stockDeducted){
+    order.items.forEach(function(item){
+      inventory[item.id] = Math.max(0, (inventory[item.id] || 0) - item.cantidad);
+    });
+    order.stockDeducted = true;
+  }
+  saveStore();
+  renderAdmin();
+}
+
+$("pagar").onclick = function(){
+  var nom = $("nom").value.trim(),
+      cor = $("cor").value.trim(),
+      tel = $("tel").value.trim();
+
+  if(!total()) return aviso("Agrega al menos un producto a tu pedido antes de continuar.", "err");
+  if(total() < 10) return aviso("La compra mínima es de $10.00 MXN.", "err");
+  if(!nom || !/^\S+@\S+\.\S+$/.test(cor) || tel.replace(/\D/g,"").length !== 10){
+    return aviso("Completa tu nombre, un correo válido y un teléfono de 10 dígitos.", "err");
+  }
+  if(!$("ac").checked) return aviso("Debes aceptar el Aviso de Privacidad y los Términos y Condiciones.", "err");
+
+  var items = P.filter(function(x){ return cart[x.id]; }).map(function(x){
+    return {id:x.id, nombre:x.n, cantidad:cart[x.id], precio:x.p};
+  });
+  var unavailable = items.find(function(item){ return (inventory[item.id] || 0) < item.cantidad; });
+  if(unavailable) return aviso("Existencia insuficiente para " + unavailable.nombre + ". Consulta el inventario disponible.", "err");
+
+  var order = {
+    id: orderNumber(),
+    createdAt: new Date().toLocaleString("es-MX"),
+    customer: {nombre:nom, correo:cor, telefono:tel, entrega:$("ent").value},
+    items: items,
+    total: total(),
+    paymentMethod: "Transferencia SPEI (demostración)",
+    paymentStatus: "Pendiente",
+    status: "Pendiente de pago",
+    stockDeducted: false
+  };
+  store.orders.unshift(order);
+  saveStore();
+
+  $("lineas").innerHTML =
+    '<div class="order-detail"><strong>Pedido generado: ' + order.id + '</strong>' +
+    '<p>Importe: <strong>' + money(order.total) + ' MXN</strong></p>' +
+    '<p>Estado del pago: <span class="status">Pendiente</span></p>' +
+    '<p><strong>Datos de transferencia de demostración</strong><br>Banco: Banco de demostración<br>Beneficiario: La Espiga Dorada (datos ficticios)<br>CLABE: 000000000000000000<br>Concepto: ' + order.id + '</p>' +
+    '<p class="note">Estos datos son ficticios. No realices una transferencia bancaria a esta CLABE.</p>' +
+    '<button class="btn sm" id="simulateTransfer">Simular transferencia realizada</button></div>';
+
+  $("total").textContent = money(order.total);
+  $("simulateTransfer").onclick = function(){
+    setOrderPaid(order);
+    cart = {};
+    pinta();
+    $("lineas").innerHTML = '<div class="order-detail"><strong>¡Pago simulado confirmado!</strong><p>Pedido ' + order.id + ' registrado en administración.</p><p>La empresa ya puede preparar el pedido.</p></div>';
+    aviso("Pedido " + order.id + " registrado. Pago confirmado en modo de demostración.", "ok");
+  };
+  aviso("Pedido generado. Sigue las instrucciones para completar la demostración de transferencia.", "ok");
+};
+
+/* Funciones del panel administrativo */
+function esc(v){
+  return String(v == null ? "" : v).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+function statusClass(s){
+  if(s === "Pagado" || s === "Entregado" || s === "Completado") return "status paid";
+  if(s === "Cancelado") return "status cancel";
+  return "status";
+}
+function adminView(name){
+  document.querySelectorAll(".admin-view").forEach(function(v){v.classList.remove("active");});
+  document.querySelectorAll("[data-admin-view]").forEach(function(b){b.classList.toggle("active",b.dataset.adminView===name);});
+  var target = $("admin" + name.charAt(0).toUpperCase() + name.slice(1));
+  if(target) target.classList.add("active");
+  renderAdmin();
+}
+document.querySelectorAll("[data-admin-view]").forEach(function(b){
+  b.onclick = function(){adminView(b.dataset.adminView);};
+});
+$("adminLoginBtn").onclick = function(){
+  if($("adminPin").value === "ADMIN2026"){
+    $("adminLogin").hidden = true;
+    $("adminApp").hidden = false;
+    $("adminLoginMsg").className = "msg";
+    renderAdmin();
+  }else{
+    $("adminLoginMsg").textContent = "Clave incorrecta. Intenta nuevamente.";
+    $("adminLoginMsg").className = "msg err";
+  }
+};
+$("adminLogout").onclick = function(){
+  $("adminApp").hidden = true;
+  $("adminLogin").hidden = false;
+  $("adminPin").value = "";
+};
+$("orderSearch").addEventListener("input", renderOrders);
+$("stockSave").onclick = function(){
+  var id = $("stockProduct").value;
+  var amount = Math.max(0, parseInt($("stockAmount").value,10) || 0);
+  if($("stockMovement").value === "add") inventory[id] = (inventory[id] || 0) + amount;
+  else inventory[id] = amount;
+  saveStore(); renderAdmin();
+};
+function renderAdmin(){
+  if(!$("adminApp") || $("adminApp").hidden) return;
+  var all = orders();
+  $("kpiOrders").textContent = all.length;
+  $("kpiPaid").textContent = money(all.filter(function(o){return o.paymentStatus==="Pagado";}).reduce(function(t,o){return t+o.total;},0));
+  $("kpiPending").textContent = all.filter(function(o){return o.paymentStatus!=="Pagado";}).length;
+  $("kpiProducts").textContent = P.length;
+  $("recentOrders").innerHTML = orderRows(all.slice(0,5), false);
+  renderOrders();
+  renderPayments();
+  renderCustomers();
+  renderInventory();
+}
+function orderRows(list, actions){
+  if(!list.length) return '<div class="admin-empty">Todavía no hay pedidos registrados. Realiza una compra desde la tienda.</div>';
+  return '<table class="admin-table"><thead><tr><th>Pedido</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Pago</th><th>Pedido</th>'+(actions?'<th>Acciones</th>':'')+'</tr></thead><tbody>'+
+  list.map(function(o){
+    return '<tr><td><strong>'+esc(o.id)+'</strong><br><small>'+esc(o.paymentMethod)+'</small></td><td>'+esc(o.customer.nombre)+'<br><small>'+esc(o.customer.correo)+'</small></td><td>'+esc(o.createdAt)+'</td><td>'+money(o.total)+'</td><td><span class="'+statusClass(o.paymentStatus)+'">'+esc(o.paymentStatus)+'</span></td><td><span class="'+statusClass(o.status)+'">'+esc(o.status)+'</span></td>'+
+    (actions?'<td><div class="admin-actions">'+(o.paymentStatus!=="Pagado"?'<button onclick="adminConfirmPayment(\''+o.id+'\')">Confirmar pago demo</button>':'')+'<button onclick="adminAdvanceOrder(\''+o.id+'\')">Avanzar pedido</button></div></td>':'')+'</tr>';
+  }).join('')+'</tbody></table>';
+}
+function renderOrders(){
+  if(!$("ordersTable")) return;
+  var q = ($("orderSearch").value || "").toLowerCase();
+  var list = orders().filter(function(o){return (o.id+" "+o.customer.nombre+" "+o.customer.correo).toLowerCase().includes(q);});
+  $("ordersTable").innerHTML = orderRows(list,true);
+}
+function renderPayments(){
+  if(!$("paymentsTable")) return;
+  var list = orders();
+  $("paymentsTable").innerHTML = list.length ? '<table class="admin-table"><thead><tr><th>Pedido</th><th>Cliente</th><th>Método</th><th>Importe</th><th>Estado</th><th>Fecha de confirmación</th><th>Acción</th></tr></thead><tbody>'+
+    list.map(function(o){return '<tr><td>'+esc(o.id)+'</td><td>'+esc(o.customer.nombre)+'</td><td>'+esc(o.paymentMethod)+'</td><td>'+money(o.total)+'</td><td><span class="'+statusClass(o.paymentStatus)+'">'+esc(o.paymentStatus)+'</span></td><td>'+esc(o.paidAt||"—")+'</td><td>'+(o.paymentStatus!=="Pagado"?'<button class="mini-btn" onclick="adminConfirmPayment(\''+o.id+'\')">Confirmar demo</button>':'Confirmado')+'</td></tr>';}).join('')+'</tbody></table>' : '<div class="admin-empty">No hay pagos registrados.</div>';
+}
+function renderCustomers(){
+  if(!$("customersTable")) return;
+  var map = {};
+  orders().forEach(function(o){var c=o.customer; if(!map[c.correo]) map[c.correo]={...c,count:0,total:0,last:o.createdAt}; map[c.correo].count++; map[c.correo].total+=o.total;});
+  var list = Object.values(map);
+  $("customersTable").innerHTML = list.length ? '<table class="admin-table"><thead><tr><th>Nombre</th><th>Correo</th><th>Teléfono</th><th>Entrega</th><th>Pedidos</th><th>Compras (MXN)</th></tr></thead><tbody>'+
+    list.map(function(c){return '<tr><td>'+esc(c.nombre)+'</td><td>'+esc(c.correo)+'</td><td>'+esc(c.telefono)+'</td><td>'+esc(c.entrega)+'</td><td>'+c.count+'</td><td>'+money(c.total)+'</td></tr>';}).join('')+'</tbody></table>' : '<div class="admin-empty">Los datos de clientes aparecerán cuando se registre una compra.</div>';
+}
+function renderInventory(){
+  if(!$("inventoryTable")) return;
+  $("inventoryTable").innerHTML = '<table class="admin-table"><thead><tr><th>Producto</th><th>Precio</th><th>Existencias</th><th>Disponibilidad</th></tr></thead><tbody>'+
+    P.map(function(p){var n=inventory[p.id]||0;return '<tr><td>'+esc(p.n)+'</td><td>'+money(p.p)+'</td><td>'+n+'</td><td><span class="'+(n>0?'status paid':'status cancel')+'">'+(n>0?'Disponible':'Agotado')+'</span></td></tr>';}).join('')+'</tbody></table>';
+  $("stockProduct").innerHTML = P.map(function(p){return '<option value="'+p.id+'">'+esc(p.n)+'</option>';}).join('');
+}
+window.adminConfirmPayment = function(id){
+  var order = orders().find(function(o){return o.id===id;});
+  if(!order) return;
+  if(order.paymentStatus!=="Pagado" && !confirm("¿Confirmar el pago en modo de demostración? No se verifica una transferencia real.")) return;
+  setOrderPaid(order);
+  renderAdmin();
+};
+window.adminAdvanceOrder = function(id){
+  var order = orders().find(function(o){return o.id===id;});
+  if(!order) return;
+  if(order.paymentStatus!=="Pagado"){alert("Primero debe confirmarse el pago.");return;}
+  var steps = ["Confirmado","En preparación","Listo para entrega","Entregado"];
+  var i = steps.indexOf(order.status);
+  order.status = steps[Math.min(i+1,steps.length-1)];
+  saveStore(); renderAdmin();
+};
+
+catalogo();
+pinta();
+
+var q = new URLSearchParams(location.search);
+if(q.get("pago") === "ok"){
+  go("compras");
+  aviso("Pago recibido correctamente. Gracias por tu compra, enviamos la confirmación a tu correo.", "ok");
+}
+if(q.get("pago") === "cancelado"){
+  go("compras");
+  aviso("El proceso de pago fue cancelado. No se realizó ningún cargo a tu tarjeta.", "err");
+}
+</script>
+</body>
+</html>
